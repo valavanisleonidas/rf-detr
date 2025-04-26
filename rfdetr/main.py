@@ -60,13 +60,14 @@ HOSTED_MODELS = {
 }
 
 def download_pretrain_weights(pretrain_weights: str, redownload=False):
-    if pretrain_weights in HOSTED_MODELS:
+    name = os.path.basename(pretrain_weights)
+    if name in HOSTED_MODELS:
         if redownload or not os.path.exists(pretrain_weights):
             logger.info(
-                f"Downloading pretrained weights for {pretrain_weights}"
+                f"Downloading pretrained weights for {name}"
             )
             download_file(
-                HOSTED_MODELS[pretrain_weights],
+                HOSTED_MODELS[name],
                 pretrain_weights,
             )
 
